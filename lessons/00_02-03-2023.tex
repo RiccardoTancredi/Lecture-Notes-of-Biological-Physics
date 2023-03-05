@@ -7,54 +7,74 @@
 
 \chapter{Introduction and basic definitions}
 
-\begin{chapquote}{Unknown author}
-    The science matters more than the programming.
+\begin{chapquote}{Lucretius}
+    "Non erit, et lux solis flare nos de tenebris et rerum scientia".
 \end{chapquote}
 
 % \begin{chapquote}{William of Ockham}
 %     The simplest explanation is most likely the right one.
 % \end{chapquote}
 
-\marginpar{ \textbf{Lecture 1.} \\  \displaydate{date}. \\ Compiled:  \today.}
+\marginpar{ \textbf{Lecture 1.} \\  \date{\displaydate{date}}. \\ Compiled:  \today.}
 
-What is the job of a physicist? A physicist want to describe nature by making prediction and modelling it with a theory. Then, from theories come applications. This is called scientific method.
-If we have more than one theory which are in accordance, we take the most simplest one and this principle is also known as \textbf{Ockham's razor}.
-If the theories are not in accordance, we maybe made a wrong prediction and we can change it in someway by looking for new stuff. It is a very short reasume of what science is.
+Physics has always been the combination of experiments and theory. Since Galileo, the observation had always been the starting point to apply the scientific method, followed by hypothesis, deductions and experimental controls.  
+What makes physics an \emph{exact science} is the fact that it is based on mathematical models and principles that are consistently observed in the natural world. These mathematical models allow physicists to make precise predictions about the behavior of physical systems and the results of experiments, which can then be tested through further observations and experiments.
+In the history of physics many times had happened that theory had predicted reality - think of the Higgs boson - and from this we had learnt that we have a so good comprehension of reality that we are often capable to predict and describe its most inner aspects.
+On the other hand, biology has not had the same luck: compared to physics, in which, again, both theory and experiments allow us to gain knowledge about reality, there is not a rigorous mathematical theory behind biology.
+There are not always rigorous models able to describe biology. The study of biology is essentially the study of complexity.
+Even if \emph{complexity} it's further the goals of this course, we can think of that as the mathematician Peter Dodds would describe it: \emph{"There's no love in a carbon atom, No hurricane in a water molecule, No financial collapse in a dollar bill."} \cite{complexity}.
+Biological Physics is basically the study of this complexity with goal the understanding of the physics behind this complexity, behind biology. 
+Contrary to a basic course in physics, in which we could start from the laws of Newton of motion, here there are no Newton's laws in biological physics. By making the assumption that the motion is in absence of friction and that the objects move with constant velocity horizontally and accelerating vertically \emph{"If then the balls of lead, of iron, of stone do not observe that supposed proportion, its damage, we will say that we are not talking about them."} as Evangelista Torricelli would say\footnote{Se poi le palle di piombo, di ferro, di pietra non osservano qella supposta proporzione, suo danno, noi diremo che non parliamo di esse. \cite{E-Torricelli}}.
 
-This was the method, now we want a summary of the content. For instance, what are the interesting problems in physics? We have the P vs NP problem (which is a problem of complexity of algorithm), the measurement problems, the entanglement in many body systems, quantum gravity, dark energy, Rieman hypothesis, artificial intelligence, high temperature superconductors, neutrino masses, standard model, quantum chemistry and so on and so forth.
-But, why is it not easy to solve these problems? If we could solve it we would have a jump on our understanding. All this things are a lot of parts that interacts. This is a complex system: a quantum many body system. However, solving many body quantum systems is a big data problem.
+The key problem is that every biological particle moves in a dissipative medium, which cannot be neglected: \textbf{water}.
+This actually impose the need to work in a specific framework which is not the traditional one, but it's the stochastic one. We will then deal with stochastic equations.
+It is important to underline that, since we are working in water, we will work at low \textbf{Reynolds-number} so in a regime in which $\vec{F}\propto \vec{v}$ and not $\vec{a}$. Also the $\vec{\nabla}$ operator will be use, expecially in everything concerning fluidodynamics and we will pay attention to tha \href{https://en.wikipedia.org/wiki/Del_in_cylindrical_and_spherical_coordinates#Del_formula}{many representations} this operator shows.
+Moreover, it is relavant to rememeber that the usual time reversal property is no longer possible as we cannot keep track of an Avogadro's number ($N_A$) of particles. 
+What we wish to show, thanks to statistical mechanics, the \emph{Langevin equantion} and the \emph{Fokker-Planck equations}, is that nature tends to use the same strategies and ideas over and over again. Basically, we will deal with many applications, in order to emphasize that biological physics is an applied subject rather than only a theoretical one. 
+We will start then by considering a single particle moving in water. Then we will exdend this argument to many particles diffusing in water and we will give some possible applications.
 
-Let us see how hard is the problem that we are going to attach. What can we do? We need to use supercomputers that are able to solve it. Suppose that we have available all computational power of the world, how many extractions per second can we do? The total resources are approximately \( 10^{22} \) Flop/s. For instance, in the website \url{top500.org} there is a list of the first 10 supercomputers and at the moment the fastest on Earth is \( \sim 10^{16} \) (\( \sim 415 \) PFlop/s), or in Marconi100 we have 21 PFlop/s.
-Now, let us say we want to describe complex systems, as a huge molecules, quantum gravity, superconductors and let us start from a toy model as a cube of \( N = 64 = 4 \times 4 \times 4 \) spins 1/2 which is the simplest non trivial quantum system.
-How is large the many body wake function? Since it is in an Hilbert space, the wave function has dimension \( 2^d \): hence we have \( 2^{64} \sim 10^{19} \). If we go on and we consider a \( N = 5 \times 5 \times 5 \) we have \( 10^{37} \) operations only to initialize. This is an impossible task. How do we address this problem? We simplify the model by making some hypothesis and, in general, we use brute force only at the end. Just out of curiosity, our brain operates at \( 10^{18} \) Flop/s.
+\section{Elements of thermodynamics: statistical mechanics}
+Since it is not possible to study $N_A\approx10^{23}$ particles statistical mechanics is the practical solution to use in order to connect biology and physics.\\
+In thermodynamics we have two representations: \textbf{entropic} and \textbf{energetic} representation.
+% \subsection{Entropy representation}
+Equilibrium thermodynamics in terms of entropy representation express the entropy $S$ as a function of linearly additive (extensive) variables: the internal energy, the volume and the number of particles: $$S=S(U, V, N).$$
+% \subsection{Energy representation}
+Instead, in terms of energy representation, it is possible to invert the the above equation and express the internal energy $U$ as a function of $U=U(S, V, N)$. This equation is less fundamental than the previous one, but it is more used. From this we can generate the \emph{free energies} which are fundamental statical quantities that are equivalent to internal energy with the difference that, using \emph{Legendre transformations}, an extensive parameter is replaced with an intensive one.
+For example, by replacing the entropy $S$ with the temperature $T$ we get the Helmholtz free energy $F=F(T,V,N)$ or by replacing also the volume $V$ with the pressure $P$ and we get the Gibbs free energy $G=G(T,P,N)$ and so on.
+These frameworks will be useful to understand ions pumps, thanks to which neurons are able to communicate and work properly in a non-equilibrium environment, or molecular motors, proteins folding, two-states systems (like the folding and unfolding process of RNA using \emph{optical tweezers}), how polymers behave, how they interact and transform, what are their shapes and properties and many many other cases.  
 
-\section{Goals and structure of the course}
+To investigate the link with biology let's consider this example:
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{../frontespizio/tikz/0_lesson/00_1.pdf}
+    % \label{fig:9_1}
+    \caption{Heat and conservation of energy}
+\end{figure}
+A particle starts at rest at height $z$ is subjected to an external field force $\vec{g}$ pointing downward. The particle has total internal energy $U = \frac{1}{2}m\vec{v}^2(t)+mgz(t)$. By neglecting the action of air
+\begin{equation*}
+    \begin{split}
+        \frac{d}{dt}U(t) & =\underbrace{\frac{1}{\cancel{2}}m\cancel{2}\vec{v}\cdot\frac{d}{dt}\vec{v}}_{=(0,0,-g)=\vec{a}}+mg\underbrace{v_z(t)}_{\vec{v}=(0,0,v_z(t))}\\
+        & = \underbrace{-mgv_z(t)}_{>0}+\underbrace{mgv_z(t)}_{<0}\stackrel{!}{=} 0
+    \end{split}
+\end{equation*}
+This proves that the internal total energy is conserved, as we know from this simple physics problem.
+We can consider then $\Delta U = U_1-U_0 = Q$ which represents the total heat absorbed by the system.\\
+Supposing that the ground is made of mud, then energy is transformed to the mud as heat $Q$, so there is a dissipation of energy. If we consider also step \framebox[0.5cm][c]{2} we can write, since we are considering a cyclic transformation
+\begin{equation}
+    \begin{split}
+        \Delta U &= U_2-U_0 = \underbrace{U_2-U_1}_{W}+\underbrace{U_1-U_0}_{Q}\\
+        &=W+Q
+    \end{split}
+\end{equation}
+where $W$ is the work absorbed by the system. In the case in which there is no mud $\Delta U = 0$, but since we generally do not deal with cyclic transformations the above $\Delta U = W+Q$ represents the conservation of the total energy, also known as the $1^{st}$ law of thermodynamics. We underline the fact that the $\Delta$ is present due to the fact that $U$ is a function of state, while $W$ and $Q$ are not. 
 
-The aim of this course is learning some basics of computational physics with general tools, learn how to use and develop software solution for scientific programming and an introduction to advanced tools for computational quantum physics.
-
-It is structured in the following way:  we have a theory part and a practical part.
-\begin{itemize}
-\item Theory part:
-    \begin{itemize}
-        \item we start from classical to quantum, so we have a kind of introduction to software and hardware;
-        \item then, we reasume some basics of linear algebra;
-        \item differential calculus (integrals, differential equations and so on);
-        \item Schr$\ddot{o}$dinger equation;
-        \item wave functions approximations;
-        \item renormalization group (all the numerical renormalization group ideas);
-        \item finally, we introduce Tensor Network methods.
-    \end{itemize}
-\item Practical part:
-    \begin{itemize}
-        \item Tools as: Fortran, Python, Gnuplot, Latex.
-    \end{itemize}
-\end{itemize}
-There will be weekly exercies to be upload on moodle and they will be discussed in class. The final mark will be based on how you go on the weekly exercises and the final exam will be based on a project of two-three people in which you have one month to analyze results and write a report. The argument of the report is something that can be suggested by us which is related with the course. The suggested books is “Introduction to tensor network methodsnumerical simulations of low-dimensional many-body quantum systems”, Simone Montangero. 
-
-
-
-
-
-
-
+The link to biology with this example can be found by considering the case in which the mud is warmed up when the particle hit it: in this case there is a dissipation of energy and the particle is not able to come back to the starting point, due to the fact that we have to take into account the $2^{nd}$ law of thermodynamics too. In the Helmholtz framework, the Helmholtz free energy is given by $F=F(T, V, N) = U-TS$ where entropy is used to estimate the fraction of \emph{low quality energy}. \\
+The key idea is that the entropic term depicts the disorder of the system and it is linked directly to the energy that the system can no longer use. The amount of \emph{good quality energy} the system loses depends on the temperature: the higher the temperature the more the \emph{good energy} is lost.
+For biology this is of utmost importance because, since there is no molecular machine that works a $0$ temperature, nature uses disorder to produce work, by further continuously find a trade-off between temperature level and quantity of disorder. In this particular range of temperatures biology works and it is able to commute outside good energy into low quality one and also to take advantage of the disorder-entropic component in someway.
+Since every biological system is not a closed system but it is always in touch with a greater system a \emph{reservoir}, it is possible to have $\Delta S <0$. 
+For an open system we can the restate the second law of thermodynamics as 
+\begin{equation}
+    \frac{\Delta U}{T} \leq \Delta S \implies \Delta F \leq 0
+\end{equation}    
+to underline the possibility of the system to control and reuse entropy, in order to improve the order of the system, as far as the good quality energy, coming from outside, is used and reduced by a proper amount ($2^{nd}$ law) and converted into low quality ($1^{st}$ law) which ejected in the surrounding. 
 \end{document}
