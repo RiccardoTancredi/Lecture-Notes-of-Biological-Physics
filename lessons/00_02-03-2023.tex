@@ -53,7 +53,7 @@ To investigate the link with biology let's consider this example:
 A particle starts at rest at height $z$ is subjected to an external field force $\vec{g}$ pointing downward. The particle has total internal energy $U = \frac{1}{2}m\vec{v}^2(t)+mgz(t)$. By neglecting the action of air
 \begin{equation*}
     \begin{split}
-        \frac{d}{dt}U(t) & =\underbrace{\frac{1}{\cancel{2}}m\cancel{2}\vec{v}\cdot\frac{d}{dt}\vec{v}}_{=(0,0,-g)=\vec{a}}+mg\underbrace{v_z(t)}_{\vec{v}=(0,0,v_z(t))}\\
+        \frac{d}{dt}U(t) & =\underbrace{\frac{1}{\cancel{2}}m\cancel{2}\vec{v}\cdot\frac{d}{dt}\vec{v}}_{\frac{d\vec{v}}{dt}=(0,0,-g)=\vec{a}}+mg\underbrace{v_z(t)}_{\vec{v}=(0,0,v_z(t))}\\
         & = \underbrace{-mgv_z(t)}_{>0}+\underbrace{mgv_z(t)}_{<0}\stackrel{!}{=} 0
     \end{split}
 \end{equation*}
@@ -70,11 +70,11 @@ where $W$ is the work absorbed by the system. In the case in which there is no m
 
 The link to biology with this example can be found by considering the case in which the mud is warmed up when the particle hit it: in this case there is a dissipation of energy and the particle is not able to come back to the starting point, due to the fact that we have to take into account the $2^{nd}$ law of thermodynamics too. In the Helmholtz framework, the Helmholtz free energy is given by $F=F(T, V, N) = U-TS$ where entropy is used to estimate the fraction of \emph{low quality energy}. \\
 The key idea is that the entropic term depicts the disorder of the system and it is linked directly to the energy that the system can no longer use. The amount of \emph{good quality energy} the system loses depends on the temperature: the higher the temperature the more the \emph{good energy} is lost.
-For biology this is of utmost importance because, since there is no molecular machine that works a $0$ temperature, nature uses disorder to produce work, by further continuously find a trade-off between temperature level and quantity of disorder. In this particular range of temperatures biology works and it is able to commute outside good energy into low quality one and also to take advantage of the disorder-entropic component in someway.
+For biology this is of utmost importance because, since there is no molecular machine that works a $0$ temperature, nature uses disorder to produce work, by further continuously find a trade-off between temperature level and quantity of disorder. In this particular range of temperatures - $T=T_r$ is the temperatureof the larger system, called \emph{thermal reservoir} - biology works and it is able to commute outside good energy into low quality one and also to take advantage of the disorder-entropic component in someway.
 Since every biological system is not a closed system but it is always in touch with a greater system a \emph{reservoir}, it is possible to have $\Delta S <0$. 
 For an open system we can the restate the second law of thermodynamics as 
 \begin{equation}
     \frac{\Delta U}{T} \leq \Delta S \implies \Delta F \leq 0
 \end{equation}    
-to underline the possibility of the system to control and reuse entropy, in order to improve the order of the system, as far as the good quality energy, coming from outside, is used and reduced by a proper amount ($2^{nd}$ law) and converted into low quality ($1^{st}$ law) which ejected in the surrounding. 
+to underline the possibility of the system to control and reuse entropy, in order to improve the order of the system, as far as the good quality energy, coming from outside, is used and reduced by a proper amount ($2^{nd}$ law) and converted into low quality ($1^{st}$ law) which is ejected in the surrounding. The free energy, so the energy available to perform work, decreases if the open system realizes a spontaneous process.
 \end{document}
